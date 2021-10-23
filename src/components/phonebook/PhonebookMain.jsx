@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { generate } from "shortid";
 import PropTypes from "prop-types";
 import "./PhonebookMain.css";
+import styles from "./PhonebookMain.module.css";
 
 const Phonebook = ({ onSubmit }) => {
   const [name, setName] = useState("");
@@ -33,14 +34,14 @@ const Phonebook = ({ onSubmit }) => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <div className="form">
+        <div className={styles.form}>
           <label>Name</label>
           <input
             type="text"
             name="name"
             value={name}
             onChange={handleChangeName}
-            className="input"
+            className={styles.input}
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
             required
@@ -51,12 +52,12 @@ const Phonebook = ({ onSubmit }) => {
             name="number"
             value={number}
             onChange={handleChangeNumber}
-            className="input"
+            className={styles.input}
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
             required
           />
-          <button type="submit" className="btn">
+          <button type="submit" className={styles.btn}>
             Add contact
           </button>
         </div>
