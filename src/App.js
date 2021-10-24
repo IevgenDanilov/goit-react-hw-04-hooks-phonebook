@@ -18,17 +18,21 @@ const App = () => {
     }));
   };
 
-  const formSubmitHandler = (data) => {
-    const { contacts } = state;
-    const availability = contacts.some((contact) => contact.name === data.name);
-
-    if (availability !== true) {
-      setState((prevState) => {
-        return { ...prevState, contacts: [...prevState.contacts, data] };
-      });
-    } else {
-      alert("Already in book!");
+  const formSubmitHandler = (newContact) => {
+    const findDoubleContact = state.contacts.find(
+      (contact) => contact.name === newContact.name
+    );
+    if (findDoubleContact) {
+      alert(`${findDoubleContact.name} is already in contacts`);
       return;
+    } else {
+      setState((prevState) => {
+        const newContactsList = [...prevState.contacts, newContact];
+        return {
+          ...prevState,
+          contacts: newContactsList,
+        };
+      });
     }
   };
 
